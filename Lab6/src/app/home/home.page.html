@@ -1,0 +1,66 @@
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-list>
+          <ion-list-header>
+            <ion-title>Todos</ion-title>
+          </ion-list-header>
+          <ion-item *ngFor="let todo of todos">
+            <ion-label>
+              <h2>{{ todo.title }}</h2>
+              <p>ID: {{ todo.id }} | Completed: {{ todo.completed ? 'Yes' : 'No' }}</p>
+            </ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-button (click)="onTodoClick(todo)" expand="block">Detail</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button 
+                  [color]="isFavorite(todo) ? 'success' : ''"
+                  (click)="addToFavorites(todo)"
+                  expand="block">
+                  {{ isFavorite(todo) ? 'Added' : 'Add' }}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-list *ngIf="favorites.length > 0">
+          <ion-list-header>
+            <ion-title>Favorites</ion-title>
+          </ion-list-header>
+          <ion-item *ngFor="let favorite of favorites">
+            <ion-label>
+              <h2>{{ favorite.title }}</h2>
+              <p>ID: {{ favorite.id }} | Completed: {{ favorite.completed ? 'Yes' : 'No' }}</p>
+            </ion-label>
+            <ion-button color="danger" (click)="removeFromFavorites(favorite)" expand="block">Delete</ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="closeModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Todo Details</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <p><strong>ID:</strong> {{ selectedTodo?.id }}</p>
+        <p><strong>Title:</strong> {{ selectedTodo?.title }}</p>
+        <p><strong>Completed:</strong> {{ selectedTodo?.completed ? 'Yes' : 'No' }}</p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

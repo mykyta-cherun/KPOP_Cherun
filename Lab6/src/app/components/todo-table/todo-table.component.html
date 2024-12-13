@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Todos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-table>
+    <ion-row *ngFor="let todo of todos" (click)="onTodoClick(todo)">
+      <ion-cell>{{ todo.id }}</ion-cell>
+      <ion-cell>{{ todo.title }}</ion-cell>
+      <ion-cell>{{ todo.completed ? 'Yes' : 'No' }}</ion-cell>
+    </ion-row>
+  </ion-table>
+</ion-content>

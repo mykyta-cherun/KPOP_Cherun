@@ -1,0 +1,7 @@
+{
+  "name": "myHybridApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
