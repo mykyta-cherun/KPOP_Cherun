@@ -1,0 +1,9 @@
+<h2>Favorites</h2>
+<mat-list>
+  <mat-list-item *ngFor="let user of favorites">
+    <span>{{ user.name.first }} {{ user.name.last }} ({{ user.email }})</span>
+    <button mat-icon-button color="warn" (click)="removeFromFavorites(user)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
